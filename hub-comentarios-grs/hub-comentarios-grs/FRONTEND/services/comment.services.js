@@ -1,7 +1,7 @@
 const URL_API = "http://localhost:7000";
 
 const CommentService = {
-  apiGetComment:async () => {
+  apiGetComment: async () => {
     return new Promise((resolve, reject) => {
       fetch(`${URL_API}/comment`)
         .then((response) => response.json())
@@ -18,5 +18,4 @@ const CommentService = {
   },
 };
 
-
-export { CommentService };
+export {CommentService}
