@@ -1,0 +1,71 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(255, 255, 255);
+}
+
+.comments {
+    width: 400px;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    color: #0d0d0d;
+    border-radius: 10px;
+    background-color: #797d9a;
+}
+
+.cardzin {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #383939;
+    width: 500px;
+    padding: 5px;
+    color: #d7e50d;
+}
+
+.cardzin i {
+    color: #0de5a8;
+}
+
+.cardzin small {
+    color: #ffffff;
+    opacity: 0.7;
+}
+
+.comments * {
+    display: block;
+}
+
+.comments label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#form-comentario textarea,
+input {
+    color: #0de5a8;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: #383939;
+}
+
+.disabled {
+    display: none;
+}
+
+#form-comentario .btn-submit {
+    margin-top: 25px;
+    padding: 10px;
+    width: 100px;
+    color: #ffff00;
+    background-color: #383939;
+}
+
+#form-comentario form {
+    margin: 10px auto 0px auto;
+    padding: 10px auto 0px auto;
+}
+
+.data {
+    margin-right: 0px;
+    align-self: flex-end;
+}
