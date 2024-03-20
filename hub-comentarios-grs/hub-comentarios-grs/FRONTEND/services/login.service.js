@@ -13,7 +13,7 @@ const LoginService = {
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            resolve("Usuario autenticado com sucesso");
+            resolve(data.user);
           } else {
             reject("Erro na requisição");
           }
