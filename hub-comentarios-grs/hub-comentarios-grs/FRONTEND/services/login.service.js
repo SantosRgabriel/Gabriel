@@ -15,7 +15,7 @@ const LoginService = {
           if (data.success) {
             resolve(data.user);
           } else {
-            reject("Erro na requisição");
+            reject(data.error);
           }
         });
     }).catch((error) => {

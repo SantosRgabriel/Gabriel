@@ -1,6 +1,5 @@
-import { User } from "../models/user.models.js";
-import { LoginService } from "../services/login.service.js";
-import { LoginService } from "../services/login.service.js";
+import { User } from "../models/user.model.js";
+import { LoginService } from "../services/login.services.js";
 
 const getLoginInputs = () => {
   return {
@@ -9,7 +8,7 @@ const getLoginInputs = () => {
   };
 };
 
-const hadleShowHide = () => {
+const handleShowHide = () => {
   const newCommentTag = document.getElementById("form-comentario");
   const loginTag = document.getElementById("login-form");
 
@@ -33,10 +32,13 @@ const handleLogin = (event) => {
       user.setId(result.id);
       user.setFirstname(result.firstname);
       user.setLastname(result.lastname);
-      hadleShowHide();
+      handleShowHide();
+      document.getElementById(
+        "inputAuthor"
+      ).value = `${result.firstname} ${result.lastname}`;
     })
     .catch((error) => {
-      alert(`Logi Inválido: Error ${error.message}`);
+      alert(`Login Invalido. Error: ${error.message}`);
     });
 };
 
@@ -48,4 +50,3 @@ const LoginComponent = {
 };
 
 export { LoginComponent };
-

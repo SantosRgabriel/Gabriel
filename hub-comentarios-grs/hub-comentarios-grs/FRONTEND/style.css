@@ -3,14 +3,23 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
+.euai {
+    max-height: 50px;
+}
+
 .comments {
     width: 400px;
     max-width: 400px;
+    max-height: 500px;
     margin: 50px auto;
     padding: 20px;
     color: #0d0d0d;
     border-radius: 10px;
     background-color: #797d9a;
+}
+
+.scroll {
+    overflow: auto;
 }
 
 .cardzin {

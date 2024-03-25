@@ -1,5 +1,5 @@
 import { CommentComponent } from "./Comment/CommentComponent.js";
-import { LoginComponent } from "./login/login.component.js";
+import { LoginComponent } from "./Login/LoginComponent.js";
 
-CommentComponent.run();
 LoginComponent.run();
+CommentComponent.run();

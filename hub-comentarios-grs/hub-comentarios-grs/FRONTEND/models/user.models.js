@@ -1,16 +1,20 @@
 class User {
-  constructor(id, username, firstname, lastname, password) {
+  constructor(id, username, password, firstname, lastname) {
     this.id = id;
     this.username = username;
+    this.password = password;
     this.firstname = firstname;
     this.lastname = lastname;
-    this.password = password;
   }
+
   getId() {
     return this.id;
   }
   getUsername() {
     return this.username;
+  }
+  getPassword() {
+    return this.password;
   }
   getFirstname() {
     return this.firstname;
@@ -18,20 +22,20 @@ class User {
   getLastname() {
     return this.lastname;
   }
-  getPassword() {
-    return this.password;
+  setId(id) {
+    this.id = id;
   }
   setUsername(username) {
     this.username = username;
+  }
+  setPassword(password) {
+    this.password = password;
   }
   setFirstname(firstname) {
     this.firstname = firstname;
   }
   setLastname(lastname) {
     this.lastname = lastname;
-  }
-  setPassword(password) {
-    this.password = password;
   }
 }
 

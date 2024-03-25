@@ -4,28 +4,47 @@ import { Comment } from "../models/comment.model.js";
 const getInputComment = () => {
   return {
     author: document.getElementById("inputAuthor"),
-    comment: document.getElementById("inputComment"),
+    comment_text: document.getElementById("comment_text"),
   };
 };
 
-const setInputComment = (authorValue, commentValue) => {
-  const { author, comment } = getInputComment();
-  author.value = authorValue;
-  comment.value = commentValue;
-};
+// const setInputComment = (authorValue, commentValue) => {
+//   const { author, comment } = getInputComment();
+//   author.value = authorValue;
+//   comment.value = commentValue;
+// };
 
-const getInputCommentValue = () => {
-  return {
-    author: document.getElementById("inputAuthor").value,
-    comment: document.getElementById("inputComment").value,
-  };
-};
+// const getInputCommentValue = () => {
+//   return {
+//     author: document.getElementById("inputAuthor").value,
+//     comment: document.getElementById("inputComment").value,
+//   };
+// };
 
-const submitComment = (event) => {
+// const submitComment = (event) => {
+//   event.preventDefault();
+//   handleComment();
+
+//   //requisção Post para enviar o comment
+
+//   loadComment();
+// };
+
+const handleComment = (event) => {
   event.preventDefault();
-  const comment = getInputCommentValue();
+  const { author, comment_text } = getInputComment();
+  const created_at = new Date().toISOString().slice(0, 19).replace("T", " ");
+  const updated_at = new Date().toISOString().slice(0, 19).replace("T", " ");
+  // tem que arrumar a hora ainda
+  const comentario = new Comment(
+    null,
+    author.value,
+    comment_text.value,
+    created_at,
+    updated_at
+  );
 
-  //requisção Post para enviar o comment
+  CommentService.apiSetComment(comentario);
 
   loadComment();
 };
@@ -34,6 +53,7 @@ const loadComment = async () => {
   // Dados carregados da API
   CommentService.apiGetComment()
     .then((result) => {
+      console.log("CARREGAMENTO");
       const comments = result.map(
         (comment) =>
           new Comment(
@@ -60,13 +80,12 @@ const displayComment = (comments) => {
     let data = new Date(item.getCreatedAt());
     divDisplay.className = "d-flex text-body-secondary pt-3";
     divDisplay.innerHTML = `
-    <div class="cardzin">
+    <div class="cardzin" id="scroll">
     <div class="d-flex">
         <p class="pb-0 mb-0 small lh-sm" style="word-break: break-all;">
-            <strong>@${item.getAuthor()}</strong>
+            <strong>@${item.author.split(" ")[0]}</strong>
             <i>${item.getCommentText()}</i>     
         </p>
-        
     </div>
     <small class="d-block text-end">${data.toLocaleDateString()} às ${data.getHours()}:${data.getMinutes()}</small>
     </div>     
@@ -78,7 +97,7 @@ const displayComment = (comments) => {
 const CommentComponent = {
   run: () => {
     const formComentario = document.getElementById("formComment");
-    formComentario.addEventListener("submit", submitComment);
+    formComentario.addEventListener("submit", handleComment);
     window.onload = () => {
       loadComment();
     };
