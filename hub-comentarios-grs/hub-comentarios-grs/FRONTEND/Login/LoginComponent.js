@@ -24,6 +24,7 @@ const handleShowHide = () => {
 const handleLogin = (event) => {
   event.preventDefault();
   const { username, password } = getLoginInputs();
+  console.log("o asa")
 
   const user = new User(null, username.value, password.value, null, null);
 
