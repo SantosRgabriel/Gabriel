@@ -32,16 +32,16 @@ const getInputComment = () => {
 
 const handleComment = (event) => {
   event.preventDefault();
-  const { author, comment_text } = getInputComment();
+  const { author, comment_text} = getInputComment();
   const created_at = new Date().toISOString().slice(0, 19).replace("T", " ");
   const updated_at = new Date().toISOString().slice(0, 19).replace("T", " ");
-  // tem que arrumar a hora ainda
   const comentario = new Comment(
     null,
     author.value,
     comment_text.value,
     created_at,
-    updated_at
+    updated_at,
+    null
   );
 
   CommentService.apiSetComment(comentario);
@@ -53,7 +53,6 @@ const loadComment = async () => {
   // Dados carregados da API
   CommentService.apiGetComment()
     .then((result) => {
-      console.log("CARREGAMENTO");
       const comments = result.map(
         (comment) =>
           new Comment(
@@ -61,9 +60,10 @@ const loadComment = async () => {
             comment.author,
             comment.comment_text,
             comment.created_at,
-            comment.updated_at
+            comment.updated_at,
           )
       );
+      console.log(comments)
       displayComment(comments);
     })
     .catch((error) => {
@@ -73,6 +73,8 @@ const loadComment = async () => {
 };
 
 const displayComment = (comments) => {
+
+
   const divFeed = document.getElementById("comment-feed");
   divFeed.innerHTML = ``;
   comments.forEach((item) => {
@@ -83,7 +85,7 @@ const displayComment = (comments) => {
     <div class="cardzin" id="scroll">
     <div class="d-flex">
         <p class="pb-0 mb-0 small lh-sm" style="word-break: break-all;">
-            <strong>@${item.author.split(" ")[0]}</strong>
+        <a class="author" dataid="${item.getIdUser()}">@${item.author.split(" ")[0]}</a>
             <i>${item.getCommentText()}</i>     
         </p>
     </div>
@@ -91,8 +93,11 @@ const displayComment = (comments) => {
     </div>     
         `;
     divFeed.appendChild(divDisplay);
+
+    
   });
 };
+
 
 const CommentComponent = {
   run: () => {

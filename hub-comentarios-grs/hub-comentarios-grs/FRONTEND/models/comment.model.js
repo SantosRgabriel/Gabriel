@@ -1,10 +1,11 @@
 class Comment {
-  constructor(id, author, comment_text, created_at, updated_at) {
+  constructor(id, author, comment_text, created_at, updated_at, idUser) {
     this.id = id;
     this.author = author;
     this.comment_text = comment_text;
     this.created_at = created_at;
     this.updated_at = updated_at;
+    this.idUser = idUser;
   }
 
   getId() {
@@ -13,6 +14,10 @@ class Comment {
 
   getAuthor() {
     return this.author;
+  }
+
+  getIdUser() {
+    return this.idUser;
   }
 
   getCommentText() {
@@ -32,6 +37,10 @@ class Comment {
 
   setCommentText(comment_text) {
     this.comment_text = comment_text;
+  }
+
+  setIdUser(idUser) {
+    this.idUser = idUser;
   }
 }
 
